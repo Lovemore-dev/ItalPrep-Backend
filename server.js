@@ -16,8 +16,11 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+// routes
+app.use('/api/content', require('./routes/contentRoutes'));
 
+// port
+const PORT = process.env.PORT || 5000;
 // start server
 app.listen(PORT, () => {
   console.log(`Server is up and runninng on port ${PORT}`);
