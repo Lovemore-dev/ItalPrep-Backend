@@ -7,7 +7,7 @@ const ContentSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ["linguistic", "civic", "safety"],
+    enum: ["linguistic", "civic", "safety", "logical", "methodology","hardware", "architecture","database"],
     lowercase: true,
   },
   // Ttitle for displaying names
