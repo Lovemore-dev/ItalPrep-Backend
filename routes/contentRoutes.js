@@ -7,6 +7,6 @@ const contentController = require('../controllers/contentController');
 router.get('/', contentController.getAllContent);
 
 // get specific modules
-router.get('/:slug', contentController.getCOntentBySlug);
+router.get('/:slug', contentController.getContentBySlug);
 
 module.exports = router;

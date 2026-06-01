@@ -14,7 +14,7 @@ exports.getAllContent = async (req, res) => {
 };
 
 // Get a single module by its slug
-exports.getCOntentBySlug = async (req, res) => {
+exports.getContentBySlug = async (req, res) => {
   try {
     const content = await Content.findOne({ slug: req.params.slug });
 
