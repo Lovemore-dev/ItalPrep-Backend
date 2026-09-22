@@ -26,3 +26,36 @@ exports.getContentBySlug = async (req, res) => {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
 };
+
+exports.createContent = async (req, res) => {
+  try {
+    const content = await Content.create(req.body);
+    res.status(201).json(content);
+  } catch (err) {
+    res.status(400).json({ message: "Invalid content", error: err.message });
+  }
+};
+
+exports.updateContent = async (req, res) => {
+  try {
+    const content = await Content.findOneAndUpdate(
+      { slug: req.params.slug },
+      req.body,
+      { new: true, runValidators: true },
+    );
+    if (!content) return res.status(404).json({ message: "Content not found" });
+    res.json(content);
+  } catch (err) {
+    res.status(400).json({ message: "Invalid content", error: err.message });
+  }
+};
+
+exports.deleteContent = async (req, res) => {
+  try {
+    const content = await Content.findOneAndDelete({ slug: req.params.slug });
+    if (!content) return res.status(404).json({ message: "Content not found" });
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ message: "Server Error", error: err.message });
+  }
+};
