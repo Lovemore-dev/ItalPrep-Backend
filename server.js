@@ -15,9 +15,14 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+if (!process.env.JWT_SECRET) {
+  throw new Error("JWT_SECRET must be configured");
+}
 
 // routes
+app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/content', require('./routes/contentRoutes'));
+app.use('/api/testimonials', require('./routes/testimonialRoutes'));
 
 // port
 const PORT = process.env.PORT || 5000;
